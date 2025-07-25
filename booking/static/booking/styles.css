@@ -1,0 +1,57 @@
+/* Headlines */
+h1, h3 {
+    color: #003366;   /* dark blue */
+    font-family: 'Arial', sans-serif;   /* type */
+}
+
+/* Paragraphs */
+p {
+    font-size: 1.1rem;   /* font size */
+    line-height: 1.6;    /* line spacing */
+    color: #333;         /* text color */
+}
+
+/* Information container */
+.container {
+    background-color: #f9f9f9;    /* light background */
+    padding: 30px;                 /* indents */
+    border-radius: 8px;            /* rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);   /* shadow for depth */
+}
+
+/* Team list */
+ul {
+    list-style-type: none;    /* removes markers */
+    padding-left: 0;          /* removes left indentation */
+}
+
+ul li {
+    margin-bottom: 10px;      /* spacing between list items */
+    font-size: 1.1rem;        /* font size */
+}
+
+/* Contact information in the footer */
+footer {
+    background-color: #003366;   /* dark blue background */
+    color: white;                /* white text */
+    padding: 10px 0;             /* indents */
+    text-align: center;          /* in the center */
+}
+
+/* Navigation links in Navbar */
+.navbar-nav .nav-link {
+    color: #ffffff !important; /* white text for links */
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ffcc00 !important; /* bright yellow color on hover */
+}
+/* Navigation bar title */
+.navbar-brand {
+    color: #ffffff !important; /* white color for text */
+}
+
+.navbar-brand:hover {
+    color: #ffcc00 !important; /* yellow on hover */
+}
+

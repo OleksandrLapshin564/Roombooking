@@ -1,0 +1,14 @@
+{% extends 'booking/base.html' %}
+
+{% block title %}{{ room.name }}{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h2 class="card-title">{{ room.name }}</h2>
+        <p class="card-text"><strong>Capacity:</strong> {{ room.capacity }} people</p>
+        <p class="card-text"><strong>Description:</strong> {{ room.description }}</p>
+        <a href="{% url 'room_list' %}" class="btn btn-secondary mt-3">← Back to Room List</a>
+    </div>
+</div>
+{% endblock %}

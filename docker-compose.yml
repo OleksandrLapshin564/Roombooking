@@ -1,0 +1,27 @@
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Postgres123!
+      POSTGRES_DB: roombooking_db
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  web:
+    build: .
+    command: >
+      sh -c "./wait-for-it.sh db:5432 -- python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://postgres:Postgres123!@db:5432/roombooking_db
+
+volumes:
+  pgdata:
