@@ -1,115 +1,49 @@
-RoomBooking Project
+# RoomBooking
 
-RoomBooking is a simple training project built using Django, Docker, and PostgreSQL. It allows users to view a list of rooms, see details about each room, and access an "About Us" page. This project is developed as part of a learning process and will be gradually extended with more functionality.
+RoomBooking is a Django-based web application that allows users to view and book available rooms.
 
-🚀 Features Implemented
+## 🛠 Project Features
 
-Responsive room listing page (/)
+- Responsive room list and detail pages
+- Django templating with Bootstrap 5
+- Static image placeholders for room previews
+- Dockerized for local development
 
-Room detail pages (/rooms/<id>/)
+## 🚀 What's New (Bootstrap Enhancement)
 
-About Us page (/about/)
+This pull request includes:
 
-Base template using Bootstrap 5
+- Modernized layout with Bootstrap 5 (cards, containers, responsive grid)
+- Placeholder images added for room listings
+- Improved accessibility and layout consistency
+- Prepared room listing page for real image integration
+- Updated `base.html`, `room_list.html`, and static files
+- Docker adjustments to simplify frontend testing
 
-Custom CSS styling (styles.css)
+🔗 **Pull Request with UI Enhancements:**  
+👉 [https://github.com/OleksandrLapshin564/Roombooking/pull/1](https://github.com/OleksandrLapshin564/Roombooking/pull/1)
 
-Favicon support
+## 🐳 Local Development (via Docker)
 
-Clean and modular structure using Django app booking
-
-⚙️ Technologies Used
-
-Python 3.9.6
-
-Django 4.2.x
-
-PostgreSQL (via Docker)
-
-Docker + Docker Compose
-
-Bootstrap 5 (via CDN)
-
-Static files (CSS + favicon)
-📁 Project Structure
-Roombooking/
-├── booking/                    # Main Django app
-│   ├── templates/booking/     # HTML templates
-│   │   ├── base.html
-│   │   ├── room_list.html
-│   │   ├── room_detail.html
-│   │   └── about.html
-│   ├── static/booking/        # Static assets
-│   │   ├── styles.css
-│   │   └── images/favicon.ico
-│   ├── views.py               # Django views
-│   ├── urls.py                # App routes
-│   └── ...
-├── Roombooking/               # Django project config
-│   ├── settings.py
-│   ├── urls.py
-├── docker-compose.yml
-├── Dockerfile
-├── requirements.txt
-└── manage.py
-
-🐳 Docker Instructions
-
-Build and Run the Containers
+```bash
 docker-compose up --build
-Stop Containers
-docker-compose down
-Run Django Commands in Web Container
-docker-compose run web python manage.py <command>
-Example:
-docker-compose run web python manage.py migrate
-Create Superuser
-docker-compose run web python manage.py createsuperuser
-🔎 Testing
+Visit the site at http://localhost:8000
 
-All views are accessible via browser:
+📁 Project Structure
+booking/ — Django app
 
-http://localhost:8000/ → Room list
+templates/booking/ — HTML templates
 
-http://localhost:8000/rooms/1/ → Room detail
+static/booking/ — Static files (CSS, images)
 
-http://localhost:8000/about/ → About page
+Dockerfile, docker-compose.yml — Dev environment
 
-Templates are rendered correctly.
+📅 Assignment Info
+✅ Bootstrap-enhanced templates for room_list.html
 
-Bootstrap and custom styles load properly.
+📤 Submitted via GitHub Pull Request
 
-Favicon is displayed.
+👨‍🏫 For instructor review
 
-Layout adapts responsively to different screen sizes.
-📦 Archiving Notes
-
-Before submitting:
-
-All __pycache__ folders were deleted
-
-.venv/ and .idea/ were excluded
-
-Archive is named: roombooking_project_Oleksa.rar
-
-Total archive size is under 25MB
-🧭 Future Enhancements
-
-Add room images
-
-Use dynamic database-driven room data
-
-Implement booking forms
-
-Extend admin functionality
-
-Add 404 and error handling pages
-
-📝 Author
-
-Oleksa (Student)
-
-📅 Last Updated
-
-08 July 2025
+yaml
 
