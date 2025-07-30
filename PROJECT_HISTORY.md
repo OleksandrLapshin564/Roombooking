@@ -1,3 +1,29 @@
+# Project History — RoomBooking
+
+---
+
+### ✅ Stage 2 Complete — Bootstrap UI (29.07.2025)
+
+- Improved visual layout using Bootstrap 5.
+- Redesigned `room_list.html` to use card-based responsive grid layout.
+- Added static images and sample room previews.
+- Connected Bootstrap via CDN in `base.html`.
+- Updated Docker setup and static file paths.
+- Added backup version of `room_list.html` for comparison.
+- README.md updated with PR info.
+- Pull Request: https://github.com/OleksandrLapshin564/Roombooking/pull/1
+
+---
+
+### ✅ Stage 1 Complete — Basic Django Setup (до 07.07.2025)
+
+- Created Django app `booking`.
+- Set up project structure with static and template folders.
+- Created views and templates: `base.html`, `room_list.html`, `room_detail.html`.
+- Dockerized Django environment.
+- Connected routing and created initial static room data.
+
+
 📘 Project History and Progress Log
 
 This file helps to track what has been done and what is planned.
