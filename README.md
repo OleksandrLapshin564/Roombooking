@@ -47,3 +47,8 @@ Dockerfile, docker-compose.yml — Dev environment
 
 yaml
 
+🔹 Project repository:
+https://github.com/OleksandrLapshin564/Roombooking
+
+🔸 Pull Request with Bootstrap updates and updated README.md:
+https://github.com/OleksandrLapshin564/Roombooking/pull/1
