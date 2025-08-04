@@ -1,54 +1,97 @@
-# RoomBooking
+# 🏨 RoomBooking
 
 RoomBooking is a Django-based web application that allows users to view and book available rooms.
 
-## 🛠 Project Features
+## 🛠 Features
 
 - Responsive room list and detail pages
-- Django templating with Bootstrap 5
-- Static image placeholders for room previews
-- Dockerized for local development
+- Django templating with **Bootstrap 5**
+- Static and uploaded images for room previews
+- **Database models** for Room and Booking
+- **Admin interface** for managing rooms and bookings
+- **Media handling** with Pillow (room photos)
+- Dockerized environment for easy local development
 
-## 🚀 What's New (Bootstrap Enhancement)
+---
 
-This pull request includes:
+## 🚀 What's New — Stage 2: UI & Models Enhancement (July 2025)
 
-- Modernized layout with Bootstrap 5 (cards, containers, responsive grid)
-- Placeholder images added for room listings
-- Improved accessibility and layout consistency
-- Prepared room listing page for real image integration
-- Updated `base.html`, `room_list.html`, and static files
-- Docker adjustments to simplify frontend testing
+- ✅ Modernized layout with **Bootstrap 5** (grid, cards, containers)
+- ✅ Redesigned `room_list.html` with responsive styling
+- ✅ Replaced placeholder images with real room photos
+- ✅ Added models `Room` and `Booking`
+- ✅ Populated database with 15 rooms (5 single, 5 double, 5 luxury) via admin
+- ✅ Connected media handling with `MEDIA_URL` and `MEDIA_ROOT`
+- ✅ Enabled image upload support in Docker + Pillow installed
+- ✅ Updated templates: `base.html`, `room_list.html`, `room_detail.html`
+- ✅ Cleaned up and structured static and media files
 
-🔗 **Pull Request with UI Enhancements:**  
-👉 [https://github.com/OleksandrLapshin564/Roombooking/pull/1](https://github.com/OleksandrLapshin564/Roombooking/pull/1)
+🔗 **Pull Request:**  
+[UI & Models Update on GitHub](https://github.com/OleksandrLapshin564/Roombooking/pull/1)
 
-## 🐳 Local Development (via Docker)
+---
+
+## 🐳 Local Development with Docker
+
+### ▶️ Start Project
 
 ```bash
 docker-compose up --build
-Visit the site at http://localhost:8000
+Visit the app at:
+📍 http://localhost:8000
 
+🛑 Stop Containers
+bash
+Копировать
+Редактировать
+docker-compose down
 📁 Project Structure
-booking/ — Django app
+swift
+Копировать
+Редактировать
+booking/                ← Main Django app
+├── models.py           ← Room & Booking models
+├── templates/booking/  ← HTML templates
+├── static/booking/     ← CSS, favicon, images
+├── views.py            ← Room list & detail views
 
-templates/booking/ — HTML templates
+media/                  ← Uploaded room images
+Dockerfile              ← Django + Pillow
+docker-compose.yml      ← Dev setup (includes PostgreSQL)
+🔒 Admin Panel (Local Testing)
+Access: http://localhost:8000/admin/
 
-static/booking/ — Static files (CSS, images)
+Superuser: created during setup (Oleksa)
 
-Dockerfile, docker-compose.yml — Dev environment
+📦 Requirements
+See requirements.txt for full package list:
 
-📅 Assignment Info
-✅ Bootstrap-enhanced templates for room_list.html
+Django>=4.2,<5.0
 
-📤 Submitted via GitHub Pull Request
+Pillow>=9.0.0
 
-👨‍🏫 For instructor review
+psycopg2-binary
 
+others...
+
+🧪 Testing Checklist (Stage 2 Complete)
+✅ Django templates structured and extended properly
+
+✅ Bootstrap 5 loaded via CDN
+
+✅ Static room images show correctly
+
+✅ Media upload via admin works (tested in Docker)
+
+✅ Database models created and migrated
+
+✅ Admin panel works for Room & Booking
+
+📤 Submitted For Instructor Review
+✅ GitHub Repository
+
+✅ Pull Request with Changes
+
+📅 Last Updated: 04 August 2025
 yaml
 
-🔹 Project repository:
-https://github.com/OleksandrLapshin564/Roombooking
-
-🔸 Pull Request with Bootstrap updates and updated README.md:
-https://github.com/OleksandrLapshin564/Roombooking/pull/1

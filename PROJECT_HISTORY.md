@@ -2,6 +2,22 @@
 
 ---
 
+### ✅ Stage 3 Complete — Models, Real Data, Media (04.08.2025)
+
+- Created Django models: `Room` and `Booking` in `models.py`.
+- Installed and configured `Pillow` for image field support.
+- Configured `MEDIA_URL` and `MEDIA_ROOT` in `settings.py`.
+- Updated `urls.py` to serve media files in development.
+- Uploaded real room data (15 rooms: 5 single, 5 double, 5 luxury) via Django admin.
+- Updated Docker volume for media directory to persist uploaded photos.
+- Updated `room_list.html` to display dynamic content with real room images.
+- Final visual testing and mobile layout verification.
+- README.md, requirements.txt, and project_structure.txt updated accordingly.
+- Git branch `bootstrap-enhancement` pushed with all changes.
+- Pull Request: https://github.com/OleksandrLapshin564/Roombooking/pull/1
+
+---
+
 ### ✅ Stage 2 Complete — Bootstrap UI (29.07.2025)
 
 - Improved visual layout using Bootstrap 5.
@@ -23,88 +39,47 @@
 - Dockerized Django environment.
 - Connected routing and created initial static room data.
 
+---
 
 📘 Project History and Progress Log
 
 This file helps to track what has been done and what is planned.
 
-📁 Project Name
+📁 Project Name: **RoomBooking**
 
-RoomBooking
+---
 
 ✅ Completed Tasks
 
-✅ Initialized Django project Roombooking.
+- Initialized Django project Roombooking.
+- Created Docker configuration (`Dockerfile`, `docker-compose.yml`).
+- Configured PostgreSQL database in Docker.
+- Applied initial Django migrations.
+- Created superuser (`Oleksa`) and accessed Django admin panel.
+- Created the `/about/` route with a simple HTML response.
+- Verified all routes (`/`, `/admin/`, `/about/`).
+- Prepared and submitted archive `roombooking_project_Oleksa.rar`.
+- Integrated Bootstrap 5 and custom `styles.css`.
+- Finalized templates: `base.html`, `room_list.html`, `room_detail.html`, `about.html`.
+- Refactored frontend with Bootstrap cards and grid system.
+- Created and registered Django models.
+- Populated room data with images using admin interface.
+- Served uploaded media in Docker using volume and configuration.
+- Updated templates to use dynamic data from models.
 
-✅ Created Docker configuration:
-
-Dockerfile
-
-docker-compose.yml
-
-✅ Configured PostgreSQL database in Docker.
-
-✅ Applied initial Django migrations.
-
-✅ Created superuser:
-
-Username: Oleksa
-
-✅ Tested the Django admin panel successfully.
-
-✅ Created the /about/ route with a simple HTML response.
-
-✅ Verified routes work correctly (/admin/, /, and /about/).
-
-✅ Prepared detailed README.md explaining:
-
-How to build and run the project.
-
-How to create migrations and a superuser.
-
-How to stop containers.
-
-Example docker-compose.yml.
-
-✅ Deleted __pycache__ directories before archiving.
-
-✅ Excluded .venv and .idea folders from the archive to keep size <25MB.
-
-✅ Created and submitted archive roombooking_project_Oleksa.rar for instructor review.
-
-✅ Created Django app booking and added it to INSTALLED_APPS.
-
-✅ Created templates: base.html, room_list.html, room_detail.html, and about.html.
-
-✅ Added static directory and integrated favicon.ico and custom styles.css.
-
-✅ Successfully styled pages using Bootstrap 5 and custom CSS.
-
-✅ Fully implemented and tested routes:
-
-Home (/): Room list
-
-Room detail (/rooms/<id>/)
-
-About (/about/)
-
-✅ Performed final visual testing in various screen sizes.
-
-✅ Final results reviewed and confirmed to meet all Stage 2 homework requirements.
+---
 
 📌 Next Steps (Future)
 
-Add images to rooms (static or from database).
+- Implement room booking form and save to `Booking` model.
+- Add date availability and filtering by room type.
+- Create user registration and authentication.
+- Add booking confirmation view and email notification.
+- Add custom admin model display (list display, filters).
+- Improve UX (loading indicators, empty states, tooltips).
+- Implement pagination and search in room list.
+- Add unit tests and basic automated test coverage.
 
-Replace static data with dynamic data from the database.
+---
 
-Add forms for booking functionality.
-
-Enhance the admin panel with custom models.
-
-Improve error handling and 404 pages.
-
-🗕️ Last Updated
-
-08 July 2025
-
+🗓 Last Updated: **04 August 2025**
