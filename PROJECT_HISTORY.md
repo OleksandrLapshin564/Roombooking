@@ -2,6 +2,15 @@
 
 ---
 
+### ✅ Stage 3 Enhancement — Category Integration (07.07.2025)
+
+- Added `Category` model to classify rooms into Single, Double, and Luxury.
+- Updated models, views, and templates to support category filtering and display.
+- Designed `category_list.html` and `rooms_by_category.html` templates.
+- Ensured navigation flow from main page categories to filtered room lists.
+
+---
+
 ### ✅ Stage 3 Complete — Models, Real Data, Media (04.08.2025)
 
 - Created Django models: `Room` and `Booking` in `models.py`.
@@ -82,4 +91,4 @@ This file helps to track what has been done and what is planned.
 
 ---
 
-🗓 Last Updated: **04 August 2025**
+🗓 Last Updated: **07 August 2025**
