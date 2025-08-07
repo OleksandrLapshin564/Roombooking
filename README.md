@@ -1,97 +1,101 @@
 # 🏨 RoomBooking
 
-RoomBooking is a Django-based web application that allows users to view and book available rooms.
-
-## 🛠 Features
-
-- Responsive room list and detail pages
-- Django templating with **Bootstrap 5**
-- Static and uploaded images for room previews
-- **Database models** for Room and Booking
-- **Admin interface** for managing rooms and bookings
-- **Media handling** with Pillow (room photos)
-- Dockerized environment for easy local development
+RoomBooking is a Django-based web application that allows users to browse and book rooms categorized into Single, Double, and Luxury types.
 
 ---
 
-## 🚀 What's New — Stage 2: UI & Models Enhancement (July 2025)
+## 🛠 Key Features
 
-- ✅ Modernized layout with **Bootstrap 5** (grid, cards, containers)
-- ✅ Redesigned `room_list.html` with responsive styling
-- ✅ Replaced placeholder images with real room photos
-- ✅ Added models `Room` and `Booking`
-- ✅ Populated database with 15 rooms (5 single, 5 double, 5 luxury) via admin
-- ✅ Connected media handling with `MEDIA_URL` and `MEDIA_ROOT`
-- ✅ Enabled image upload support in Docker + Pillow installed
-- ✅ Updated templates: `base.html`, `room_list.html`, `room_detail.html`
-- ✅ Cleaned up and structured static and media files
+- Homepage displaying room categories instead of all rooms at once
+- Viewing rooms filtered by category
+- Detailed room page with description, price, capacity, and image
+- Admin panel to manage categories, rooms, and bookings
+- Image upload support for rooms via admin interface
+- Stable operation via Docker with PostgreSQL
+- Basic styling using Bootstrap 5
+
+---
+
+## 🚀 Updates — Stage 2: Categories & UI (August 2025)
+
+- ✅ Added `Category` model for grouping rooms
+- ✅ Homepage shows categories instead of full room list
+- ✅ Rooms filtered by selected category
+- ✅ Updated templates: `category_list.html`, `rooms_by_category.html`, `room_detail.html`
+- ✅ Enhanced admin panel with category management
+- ✅ Configured media files for room images (`MEDIA_ROOT` and `MEDIA_URL`)
+- ✅ Fully dockerized setup with image upload and Pillow installed
 
 🔗 **Pull Request:**  
-[UI & Models Update on GitHub](https://github.com/OleksandrLapshin564/Roombooking/pull/1)
+[Stage 2: Categories & UI Enhancement](https://github.com/OleksandrLapshin564/Roombooking/pull/1)
 
 ---
 
 ## 🐳 Local Development with Docker
 
-### ▶️ Start Project
+### Startup steps:
 
+1. Clone the repository and enter the project folder:
 ```bash
-docker-compose up --build
-Visit the app at:
-📍 http://localhost:8000
+git clone https://github.com/OleksandrLapshin564/Roombooking.git
+cd Roombooking
+Build and start containers:
 
-🛑 Stop Containers
-bash
-Копировать
-Редактировать
+
+docker-compose up -d --build
+Run migrations:
+
+
+docker exec -it roombooking-web-1 python manage.py migrate
+Create a superuser for admin access:
+
+
+docker exec -it roombooking-web-1 python manage.py createsuperuser
+Open in your browser:
+Homepage: http://localhost:8000/
+Admin panel: http://localhost:8000/admin/
+
+To stop containers:
 docker-compose down
 📁 Project Structure
-swift
-Копировать
-Редактировать
+pgsql
+Copy
+Edit
 booking/                ← Main Django app
-├── models.py           ← Room & Booking models
-├── templates/booking/  ← HTML templates
-├── static/booking/     ← CSS, favicon, images
-├── views.py            ← Room list & detail views
+├── migrations/         ← Database migrations
+├── models.py           ← Models: Category, Room, Booking
+├── templates/booking/  ← HTML templates (category_list, rooms_by_category, room_detail, etc.)
+├── static/booking/     ← Static files (CSS, favicon, images)
+├── views.py            ← View logic
+├── admin.py            ← Admin configurations
+media/                  ← Uploaded room images (mounted in Docker)
+Dockerfile              ← Django + Pillow image setup
+docker-compose.yml      ← Docker configuration for web server and PostgreSQL
+manage.py               ← Django management script
+🛠 Technologies Used
+Python 3.x, Django 4.x
 
-media/                  ← Uploaded room images
-Dockerfile              ← Django + Pillow
-docker-compose.yml      ← Dev setup (includes PostgreSQL)
-🔒 Admin Panel (Local Testing)
-Access: http://localhost:8000/admin/
+PostgreSQL (via Docker)
 
-Superuser: created during setup (Oleksa)
+Docker & Docker Compose
 
-📦 Requirements
-See requirements.txt for full package list:
+Bootstrap 5
 
-Django>=4.2,<5.0
+Pillow for image handling
 
-Pillow>=9.0.0
+⚙️ Future Plans & Recommendations
+Improve styling and UX (separate style-enhancement branch)
 
-psycopg2-binary
+Add filters and search for rooms
 
-others...
+Optimize image upload and display
 
-🧪 Testing Checklist (Stage 2 Complete)
-✅ Django templates structured and extended properly
+Implement booking confirmation system
 
-✅ Bootstrap 5 loaded via CDN
+Document project history and changes (PROJECT_HISTORY.md)
 
-✅ Static room images show correctly
+📬 Contact
+Author: Oleksandr Lapshin
+Email: lapshin.oleksa@gmail.com
 
-✅ Media upload via admin works (tested in Docker)
-
-✅ Database models created and migrated
-
-✅ Admin panel works for Room & Booking
-
-📤 Submitted For Instructor Review
-✅ GitHub Repository
-
-✅ Pull Request with Changes
-
-📅 Last Updated: 04 August 2025
-yaml
-
+📅 Last Updated: August 7, 2025
