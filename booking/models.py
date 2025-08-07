@@ -1,31 +1,41 @@
 from django.db import models
-from django.contrib.auth.models import User
 
-class Room(models.Model):
-    ROOM_TYPES = [
-        ('single', 'Single'),
-        ('double', 'Double'),
-        ('suite', 'Suite'),
-    ]
 
+class Category(models.Model):
     name = models.CharField(max_length=100)
-    room_type = models.CharField(max_length=10, choices=ROOM_TYPES)
-    capacity = models.IntegerField()
     description = models.TextField(blank=True)
-    price_per_night = models.DecimalField(max_digits=6, decimal_places=2)
-    is_available = models.BooleanField(default=True)
-    photo = models.ImageField(upload_to='room_photos/', blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "Categories"
 
     def __str__(self):
-        return f"{self.name} ({self.get_room_type_display()}) - Capacity: {self.capacity}"
+        return self.name
+
+
+class Room(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    capacity = models.IntegerField(help_text="Enter number of guests (e.g., 1, 2, 3)")
+    price = models.DecimalField(max_digits=8, decimal_places=2)
+    image = models.ImageField(upload_to='room_photos/')
+
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.CASCADE,
+        related_name='rooms',
+        null=True,
+        blank=True
+    )
+
+    def __str__(self):
+        return self.name
 
 
 class Booking(models.Model):
-    room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='bookings')
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    date = models.DateField()
-    start_time = models.TimeField()
-    end_time = models.TimeField()
+    room = models.ForeignKey(Room, on_delete=models.CASCADE)
+    guest_name = models.CharField(max_length=100)
+    check_in = models.DateField()
+    check_out = models.DateField()
 
     def __str__(self):
-        return f"{self.room.name} - {self.user.username} on {self.date}"
+        return f"{self.guest_name} - {self.room.name}"
