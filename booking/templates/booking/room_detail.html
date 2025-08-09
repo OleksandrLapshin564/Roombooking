@@ -22,6 +22,16 @@
       <p class="card-text">
         <strong>Description:</strong><br>{{ room.description }}
       </p>
+
+      {% if room.equipment.exists %}
+        <p class="card-text">
+          <strong>Equipment:</strong>
+          {% for eq in room.equipment.all %}
+            {{ eq.name }}{% if not forloop.last %}, {% endif %}
+          {% endfor %}
+        </p>
+      {% endif %}
+
       <a href="{% url 'rooms_by_category' room.category.id %}" class="btn btn-secondary mt-3">← Back to {{ room.category.name }}</a>
     </div>
   </div>

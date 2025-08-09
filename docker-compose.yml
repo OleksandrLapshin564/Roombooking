@@ -1,3 +1,5 @@
+version: '3.8'  # I recommend adding a version (required at the beginning)
+
 services:
   db:
     image: postgres:13
@@ -16,7 +18,7 @@ services:
       bash wait-for-it.sh db:5432 -- python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/app
-      - ./media:/app/media  # ⬅️ Required line for photo support
+      - ./media:/app/media  # To support photo uploads
     ports:
       - "8000:8000"
     depends_on:
