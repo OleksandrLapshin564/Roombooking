@@ -2,28 +2,29 @@
 
 ---
 
-### ✅ Stage 3 Enhancement — Category Integration (07.07.2025)
+### ✅ Stage 4 Enhancement — Ratings, Availability & Equipment (09.08.2025)
+
+- Added `Rating` model linked to rooms and users to enable user feedback.
+- Added `is_available` boolean field to Room model to indicate booking availability.
+- Introduced `Equipment` model with many-to-many relation to Room for listing available equipment.
+- Updated admin panel to manage ratings, equipment, and room availability.
+- Modified templates to display equipment lists, availability status, and ratings on room detail pages.
+- Updated Docker setup and `docker-compose.yml` to improve container orchestration.
+- Created and applied migrations for new models and fields.
+- Committed all changes under branch `bootstrap-enhancement` and pushed to GitHub.
+
+---
+
+### ✅ Stage 3 Enhancement — Category Integration (07.08.2025)
 
 - Added `Category` model to classify rooms into Single, Double, and Luxury.
 - Updated models, views, and templates to support category filtering and display.
 - Designed `category_list.html` and `rooms_by_category.html` templates.
 - Ensured navigation flow from main page categories to filtered room lists.
+- Configured media files handling (`MEDIA_ROOT`, `MEDIA_URL`) for room images.
+- Fully dockerized setup with Pillow image library installed.
 
----
-
-### ✅ Stage 3 Complete — Models, Real Data, Media (04.08.2025)
-
-- Created Django models: `Room` and `Booking` in `models.py`.
-- Installed and configured `Pillow` for image field support.
-- Configured `MEDIA_URL` and `MEDIA_ROOT` in `settings.py`.
-- Updated `urls.py` to serve media files in development.
-- Uploaded real room data (15 rooms: 5 single, 5 double, 5 luxury) via Django admin.
-- Updated Docker volume for media directory to persist uploaded photos.
-- Updated `room_list.html` to display dynamic content with real room images.
-- Final visual testing and mobile layout verification.
-- README.md, requirements.txt, and project_structure.txt updated accordingly.
-- Git branch `bootstrap-enhancement` pushed with all changes.
-- Pull Request: https://github.com/OleksandrLapshin564/Roombooking/pull/1
+🔗 Pull Request: https://github.com/OleksandrLapshin564/Roombooking/pull/1
 
 ---
 
@@ -52,7 +53,7 @@
 
 📘 Project History and Progress Log
 
-This file helps to track what has been done and what is planned.
+This file helps to track completed tasks and future plans.
 
 📁 Project Name: **RoomBooking**
 
@@ -75,6 +76,9 @@ This file helps to track what has been done and what is planned.
 - Populated room data with images using admin interface.
 - Served uploaded media in Docker using volume and configuration.
 - Updated templates to use dynamic data from models.
+- Added category grouping and filtering functionality.
+- Added rating system, equipment model, and room availability status.
+- Improved Docker container orchestration and migrations.
 
 ---
 
@@ -91,4 +95,4 @@ This file helps to track what has been done and what is planned.
 
 ---
 
-🗓 Last Updated: **07 August 2025**
+🗓 Last Updated: **09 August 2025**
