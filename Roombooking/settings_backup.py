@@ -1,23 +1,24 @@
 import os
 from pathlib import Path
-import dj_database_url
+import dj_database_url  # ✅ Додали
+from urllib.parse import urlparse
 
 # Project base directory
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
-# Secret key (use environment variable for production!)
+# Secret key
 SECRET_KEY = os.getenv(
     'DJANGO_SECRET_KEY',
     'up(iut2n@m9!tr1*xbzrs*m+zsiuv6)^od9rjgo$bz(h4zi2_9'
 )
 
-# Debug mode — for production, set to False!
+# Debug
 DEBUG = True
 
-# Allowed hosts for local dev
+# Hosts
 ALLOWED_HOSTS = ['*']
 
-# Installed applications
+# Apps
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -25,13 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    # Your application
-    'booking',
-
-    # Для crispy-forms
-    'crispy_forms',
-    'crispy_bootstrap5',
+    'booking',  # ваш додаток
 ]
 
 # Middleware
@@ -45,19 +40,19 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# Main URL config
+# URLs
 ROOT_URLCONF = 'Roombooking.urls'
 
 # Templates
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],  # your template folder
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request',  # needed for auth
+                'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
@@ -65,13 +60,13 @@ TEMPLATES = [
     },
 ]
 
-# WSGI application
+# WSGI
 WSGI_APPLICATION = 'Roombooking.wsgi.application'
 
-# Database: use dj_database_url to parse DATABASE_URL or fallback to default
+# ✅ DATABASES using dj-database-url
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgres://postgres:Postgres123!@db:5432/roombooking_db'
+        default='postgres://postgres:Postgres123!@localhost:5432/roombooking_db'
     )
 }
 
@@ -83,27 +78,22 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-# Localization
+# Time & language
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
-USE_L10N = True  # Added for date/time localization
 USE_TZ = True
 
-# Static files (CSS, JS, images)
+# Static
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [
     BASE_DIR / 'booking' / 'static',
 ]
 
-# Media files (uploads)
+# Media
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# Default primary key field type
+# Default auto field
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# Crispy forms settings
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-CRISPY_TEMPLATE_PACK = "bootstrap5"

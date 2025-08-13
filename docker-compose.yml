@@ -1,5 +1,3 @@
-version: '3.8'  # I recommend adding a version (required at the beginning)
-
 services:
   db:
     image: postgres:13
@@ -15,12 +13,12 @@ services:
   web:
     build: .
     command: >
-      bash wait-for-it.sh db:5432 -- python manage.py runserver 0.0.0.0:8000
+      bash wait-for-it.sh db:5432 -- python manage.py runserver 0.0.0.0:8001
     volumes:
       - .:/app
-      - ./media:/app/media  # To support photo uploads
+      - ./media:/app/media
     ports:
-      - "8000:8000"
+      - "8001:8001"
     depends_on:
       - db
     environment:

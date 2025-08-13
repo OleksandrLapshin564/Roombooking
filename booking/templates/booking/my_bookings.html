@@ -1,0 +1,23 @@
+{% extends 'booking/base.html' %}
+
+{% block title %}My Bookings{% endblock %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+  <h1>My Bookings</h1>
+
+  {% if bookings %}
+    <ul class="list-group">
+      {% for booking in bookings %}
+        <li class="list-group-item">
+          <strong>{{ booking.room.name }}</strong>
+          from {{ booking.check_in|date:"d M Y" }}
+          to {{ booking.check_out|date:"d M Y" }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No bookings found.</p>
+  {% endif %}
+</div>
+{% endblock %}

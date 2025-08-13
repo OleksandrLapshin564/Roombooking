@@ -3,22 +3,31 @@
 {% block title %}{{ room.name }}{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
+<div class="container mt-5 mb-5">
   <div class="card shadow-sm">
     {% if room.image %}
       <img src="{{ room.image.url }}" class="card-img-top" alt="{{ room.name }}" style="height: 300px; object-fit: cover;">
     {% endif %}
     <div class="card-body">
       <h2 class="card-title">{{ room.name }}</h2>
+
       <p class="card-text">
-        <strong>Category:</strong> {{ room.category.name }}
+        <strong>Category:</strong>
+        {% if room.category %}
+          {{ room.category.name }}
+        {% else %}
+          No category
+        {% endif %}
       </p>
+
       <p class="card-text">
-        <strong>Capacity:</strong> {{ room.capacity }} guest{% if room.capacity|add:0 > 1 %}s{% endif %}
+        <strong>Capacity:</strong> {{ room.capacity }} guest{% if room.capacity > 1 %}s{% endif %}
       </p>
+
       <p class="card-text">
         <strong>Price per night:</strong> ${{ room.price }}
       </p>
+
       <p class="card-text">
         <strong>Description:</strong><br>{{ room.description }}
       </p>
@@ -32,7 +41,17 @@
         </p>
       {% endif %}
 
-      <a href="{% url 'rooms_by_category' room.category.id %}" class="btn btn-secondary mt-3">← Back to {{ room.category.name }}</a>
+      <a href="{% if room.category %}{% url 'rooms_by_category' room.category.id %}{% else %}{% url 'category_list' %}{% endif %}" class="btn btn-secondary mt-3">
+        ← Back to
+        {% if room.category %}
+          {{ room.category.name }}
+        {% else %}
+          Categories
+        {% endif %}
+      </a>
+
+      <a href="{% url 'book_room' room.id %}" class="btn btn-primary mt-3 ms-2">Book this Room</a>
+
     </div>
   </div>
 </div>
