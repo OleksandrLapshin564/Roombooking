@@ -43,6 +43,21 @@ RoomBooking is a Django-based web application that allows users to browse and bo
 
 ---
 
+## 🚀 Updates — Stage 4: Booking Validations & UI Improvements (August 13, 2025)
+
+- ✅ Implemented unique booking validation for users to prevent overlapping bookings of the same room within conflicting dates  
+- ✅ Added `created_at` field to the `Booking` model to store booking creation timestamp  
+- ✅ Enhanced booking form with custom validation ensuring `check_in` date is before `check_out` date  
+- ✅ Display success and error messages to users during booking via flash messages  
+- ✅ Updated templates to properly show messages, improved styling and navigation flow  
+- ✅ Refined views to handle booking logic securely and correctly  
+- ✅ Tested the project thoroughly in Docker environment, updated README with clear local development instructions  
+
+🔗 **Pull Request:**  
+[Stage 4: Booking Validations & UI Improvements](https://github.com/OleksandrLapshin564/Roombooking/pull/2)
+
+---
+
 ## 🐳 Local Development with Docker
 
 ### Startup steps:
@@ -53,76 +68,45 @@ RoomBooking is a Django-based web application that allows users to browse and bo
 git clone https://github.com/OleksandrLapshin564/Roombooking.git
 cd Roombooking
 Build and start containers:
-
-bash
-
 docker-compose up -d --build
 Run migrations:
-
-bash
-
 docker-compose exec web python manage.py migrate
 Create a superuser for admin access:
-
-bash
-
 docker-compose exec web python manage.py createsuperuser
 Open in your browser:
 Homepage: http://localhost:8000/
 Admin panel: http://localhost:8000/admin/
-
 To stop containers:
-
-bash
-
 docker-compose down
-📸 How to Check Media (Room Photos) Display
-To ensure that uploaded room images are displayed correctly in the project, follow these steps:
+ How to Check Media (Room Photos) Display
+To ensure that uploaded room images are displayed correctly:
 
-Check media files exist in the project folder:
-Verify the images are present in the media/room_photos/ directory inside your project. You can list files using:
+Verify images are present in the media/room_photos/ directory inside your project.
 
-bash
-
-ls media/room_photos/
-Verify Django settings for media:
-Make sure MEDIA_ROOT and MEDIA_URL are properly set in your settings.py:
-
-python
-
+Check Django settings for media:
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
-Ensure URLs serve media during development:
-In urls.py, confirm media files are served by adding:
-
-python
-
+Confirm media URLs are served during development in urls.py:
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     # ... your url patterns
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-Upload images via Django admin:
-Use the admin panel (/admin) to upload images for rooms. Each room's image should be visible in the admin and frontend.
+Upload images via Django admin panel (/admin).
 
-View images in the browser:
-Visit the room detail pages on the frontend. Images should appear if everything is configured correctly.
+Visit room detail pages to see images.
 
-Troubleshooting:
-If images don't show, check browser developer console for 404 errors on media URLs. Verify Docker volumes mount the media directory correctly. Confirm the image files are present in the Docker container if using Docker.
-
+Troubleshoot 404 errors or missing images by checking Docker volume mounts and media paths.
 📁 Project Structure
-pgsql
-Copy
-Edit
 booking/                  ← Main Django app
 ├── migrations/           ← Database migrations
 ├── models.py             ← Models: Category, Equipment, Room, Booking, Rating
-├── templates/booking/    ← HTML templates (category_list, rooms_by_category, room_detail, etc.)
+├── templates/booking/    ← HTML templates
 ├── static/booking/       ← Static files (CSS, favicon, images)
 ├── views.py              ← View logic
 ├── admin.py              ← Admin configurations
+├── forms.py              ← Forms definitions
 media/                    ← Uploaded room images (mounted in Docker)
 Dockerfile                ← Django + Pillow image setup
 docker-compose.yml        ← Docker configuration for web server and PostgreSQL
@@ -152,5 +136,4 @@ Document project history and changes (PROJECT_HISTORY.md)
 📬 Contact
 Author: Oleksandr Lapshin
 Email: lapshin.oleksa@gmail.com
-
-📅 Last Updated: August 9, 2025
+📅 Last Updated: August 13, 2025
