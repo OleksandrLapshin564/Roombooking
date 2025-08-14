@@ -58,6 +58,19 @@ RoomBooking is a Django-based web application that allows users to browse and bo
 
 ---
 
+## 🚀 Updates — Stage 5: Final Post-Test & Stability (August 14, 2025)
+
+- ✅ Completed final post-test checklist verifying full stability of the project  
+- ✅ Checked Docker containers, navigation, authentication, and booking functionality  
+- ✅ Ensured `Booking` model and `BookingForm` correctly handle overlapping dates and prevent `None` values in queries  
+- ✅ Confirmed all pages load without errors and flash messages display correctly  
+- ✅ Updated README.md and PROJECT_HISTORY.md to document the final stable version
+
+🔗 **GitHub Branch:**  
+[Final Stable Version - bootstrap-enhancement](https://github.com/OleksandrLapshin564/Roombooking/tree/bootstrap-enhancement)
+
+---
+
 ## 🐳 Local Development with Docker
 
 ### Startup steps:
@@ -67,18 +80,27 @@ RoomBooking is a Django-based web application that allows users to browse and bo
 ```bash
 git clone https://github.com/OleksandrLapshin564/Roombooking.git
 cd Roombooking
+
 Build and start containers:
 docker-compose up -d --build
+ 
 Run migrations:
 docker-compose exec web python manage.py migrate
+
 Create a superuser for admin access:
 docker-compose exec web python manage.py createsuperuser
+
 Open in your browser:
+
 Homepage: http://localhost:8000/
+
 Admin panel: http://localhost:8000/admin/
+
 To stop containers:
 docker-compose down
- How to Check Media (Room Photos) Display
+
+How to Check Media (Room Photos) Display
+
 To ensure that uploaded room images are displayed correctly:
 
 Verify images are present in the media/room_photos/ directory inside your project.
@@ -86,6 +108,7 @@ Verify images are present in the media/room_photos/ directory inside your projec
 Check Django settings for media:
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
+
 Confirm media URLs are served during development in urls.py:
 from django.conf import settings
 from django.conf.urls.static import static
@@ -93,11 +116,13 @@ from django.conf.urls.static import static
 urlpatterns = [
     # ... your url patterns
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 Upload images via Django admin panel (/admin).
 
 Visit room detail pages to see images.
 
 Troubleshoot 404 errors or missing images by checking Docker volume mounts and media paths.
+
 📁 Project Structure
 booking/                  ← Main Django app
 ├── migrations/           ← Database migrations
@@ -111,18 +136,17 @@ media/                    ← Uploaded room images (mounted in Docker)
 Dockerfile                ← Django + Pillow image setup
 docker-compose.yml        ← Docker configuration for web server and PostgreSQL
 manage.py                 ← Django management script
+
 🛠 Technologies Used
+
 Python 3.x, Django 4.x
-
 PostgreSQL (via Docker)
-
 Docker & Docker Compose
-
 Bootstrap 5
-
 Pillow for image handling
 
 ⚙️ Future Plans & Recommendations
+
 Improve styling and UX (separate style-enhancement branch)
 
 Add filters and search for rooms
@@ -134,6 +158,8 @@ Implement booking confirmation system
 Document project history and changes (PROJECT_HISTORY.md)
 
 📬 Contact
+
 Author: Oleksandr Lapshin
 Email: lapshin.oleksa@gmail.com
-📅 Last Updated: August 13, 2025
+
+📅 Last Updated: August 14, 2025
