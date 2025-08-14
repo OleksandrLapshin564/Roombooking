@@ -29,7 +29,7 @@ INSTALLED_APPS = [
     # Your application
     'booking',
 
-    # Для crispy-forms
+    # For crispy-forms
     'crispy_forms',
     'crispy_bootstrap5',
 ]
@@ -87,8 +87,14 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
-USE_L10N = True  # Added for date/time localization
+USE_L10N = False        # We'll define custom date format
 USE_TZ = True
+
+# Custom date input/output formats (English style)
+DATE_FORMAT = "m/d/Y"                 # For display
+DATETIME_FORMAT = "m/d/Y H:i"         # For display with time
+DATE_INPUT_FORMATS = ['%m/%d/%Y']     # For forms input
+DATETIME_INPUT_FORMATS = ['%m/%d/%Y %H:%M']
 
 # Static files (CSS, JS, images)
 STATIC_URL = '/static/'
@@ -107,3 +113,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Crispy forms settings
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+# Redirects after login/logout
+LOGIN_REDIRECT_URL = '/my-bookings/'
+LOGOUT_REDIRECT_URL = '/'

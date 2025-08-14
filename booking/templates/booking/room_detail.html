@@ -1,58 +1,39 @@
 {% extends 'booking/base.html' %}
 
-{% block title %}{{ room.name }}{% endblock %}
+{% block title %}{{ room.name }} | RoomBooking{% endblock %}
 
 {% block content %}
-<div class="container mt-5 mb-5">
-  <div class="card shadow-sm">
-    {% if room.image %}
-      <img src="{{ room.image.url }}" class="card-img-top" alt="{{ room.name }}" style="height: 300px; object-fit: cover;">
-    {% endif %}
-    <div class="card-body">
-      <h2 class="card-title">{{ room.name }}</h2>
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h2 class="card-title mb-3 text-primary">{{ room.name }}</h2>
+            <h5 class="text-secondary mb-3">{{ room.category.name }}</h5>
+            <p>{{ room.description }}</p>
+            <p><strong>Price per night:</strong> ${{ room.price }}</p>
 
-      <p class="card-text">
-        <strong>Category:</strong>
-        {% if room.category %}
-          {{ room.category.name }}
-        {% else %}
-          No category
-        {% endif %}
-      </p>
+            {% if user.is_authenticated %}
+                <a href="{% url 'book_room' room.id %}" class="btn btn-primary mt-3">Book this Room</a>
+            {% else %}
+                <div class="alert alert-info mt-3">
+                    Please <a href="{% url 'login' %}">login</a> to book this room.
+                </div>
+            {% endif %}
 
-      <p class="card-text">
-        <strong>Capacity:</strong> {{ room.capacity }} guest{% if room.capacity > 1 %}s{% endif %}
-      </p>
-
-      <p class="card-text">
-        <strong>Price per night:</strong> ${{ room.price }}
-      </p>
-
-      <p class="card-text">
-        <strong>Description:</strong><br>{{ room.description }}
-      </p>
-
-      {% if room.equipment.exists %}
-        <p class="card-text">
-          <strong>Equipment:</strong>
-          {% for eq in room.equipment.all %}
-            {{ eq.name }}{% if not forloop.last %}, {% endif %}
-          {% endfor %}
-        </p>
-      {% endif %}
-
-      <a href="{% if room.category %}{% url 'rooms_by_category' room.category.id %}{% else %}{% url 'category_list' %}{% endif %}" class="btn btn-secondary mt-3">
-        ← Back to
-        {% if room.category %}
-          {{ room.category.name }}
-        {% else %}
-          Categories
-        {% endif %}
-      </a>
-
-      <a href="{% url 'book_room' room.id %}" class="btn btn-primary mt-3 ms-2">Book this Room</a>
-
+            <!-- Optional: show upcoming bookings for this room -->
+            {% if room.booking_set.exists %}
+                <h5 class="mt-4">Upcoming Bookings:</h5>
+                <ul class="list-group">
+                    {% for booking in room.booking_set.all|dictsortreversed:"check_in" %}
+                        {% if booking.check_out >= today %}
+                            <li class="list-group-item">
+                                {{ booking.check_in|date:"m/d/Y" }} → {{ booking.check_out|date:"m/d/Y" }}
+                                {% if booking.user == user %}(You){% endif %}
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
     </div>
-  </div>
 </div>
 {% endblock %}

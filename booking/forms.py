@@ -17,44 +17,41 @@ class RegisterForm(UserCreationForm):
 
 
 class BookingForm(forms.ModelForm):
+    check_in = forms.DateField(
+        widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+        input_formats=['%Y-%m-%d']
+    )
+    check_out = forms.DateField(
+        widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+        input_formats=['%Y-%m-%d']
+    )
+
     class Meta:
         model = Booking
         fields = ["guest_name", "check_in", "check_out"]
-        widgets = {
-            'check_in': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
-            'check_out': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
-        }
 
     def clean(self):
         cleaned_data = super().clean()
         check_in = cleaned_data.get("check_in")
         check_out = cleaned_data.get("check_out")
+        room = getattr(self.instance, 'room', None)
 
-        if check_in and check_out and check_in >= check_out:
-            raise forms.ValidationError("Check-out date must be after check-in date.")
+        if not room:
+            raise forms.ValidationError("Room is not specified.")
 
-        # Check for existing reservations for the same room if there is access to the instance and room
-        if hasattr(self, 'instance') and self.instance.pk is not None:
-            # To update your booking - exclude yourself
-            existing_bookings = Booking.objects.filter(
-                room=self.instance.room,
+        if check_in and check_out:
+            if check_in >= check_out:
+                raise forms.ValidationError("Check-out date must be after check-in date.")
+
+            overlapping = Booking.objects.filter(
+                room=room,
                 check_in__lt=check_out,
                 check_out__gt=check_in
-            ).exclude(pk=self.instance.pk)
-        else:
-            # For a new booking
-            room = getattr(self.instance, 'room', None)
-            # room must be passed in instance to the form
-            if room is not None:
-                existing_bookings = Booking.objects.filter(
-                    room=room,
-                    check_in__lt=check_out,
-                    check_out__gt=check_in
-                )
-            else:
-                existing_bookings = Booking.objects.none()
+            )
+            if self.instance.pk:
+                overlapping = overlapping.exclude(pk=self.instance.pk)
 
-        if existing_bookings.exists():
-            raise forms.ValidationError("This room is already booked for the selected dates.")
+            if overlapping.exists():
+                raise forms.ValidationError("This room is already booked for the selected dates.")
 
         return cleaned_data
