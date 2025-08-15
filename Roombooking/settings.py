@@ -32,6 +32,12 @@ INSTALLED_APPS = [
     # For crispy-forms
     'crispy_forms',
     'crispy_bootstrap5',
+
+    # Django REST Framework
+    'rest_framework',
+
+    # DRF Token Authentication
+    'rest_framework.authtoken',
 ]
 
 # Middleware
@@ -117,3 +123,14 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 # Redirects after login/logout
 LOGIN_REDIRECT_URL = '/my-bookings/'
 LOGOUT_REDIRECT_URL = '/'
+
+# DRF Global settings — enable Token Authentication by default
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}

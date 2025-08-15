@@ -1,3 +1,5 @@
+version: '3.9'
+
 services:
   db:
     image: postgres:13
@@ -17,12 +19,15 @@ services:
     volumes:
       - .:/app
       - ./media:/app/media
+      - ./room_photos:/app/room_photos
     ports:
       - "8001:8001"
     depends_on:
       - db
     environment:
       DATABASE_URL: postgres://postgres:Postgres123!@db:5432/roombooking_db
+      DJANGO_SETTINGS_MODULE: Roombooking.settings
+      PYTHONUNBUFFERED: '1'  # Для негайного виводу логів
 
 volumes:
   pgdata:

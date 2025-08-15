@@ -5,8 +5,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils import timezone
 
-from .models import Category, Room, Booking
+from rest_framework import viewsets
+from .models import Category, Room, Booking, Equipment
 from .forms import RegisterForm, BookingForm
+from .serializers import CategorySerializer, RoomSerializer, BookingSerializer, EquipmentSerializer
 
 # --- General Views ---
 def about_view(request):
@@ -85,3 +87,24 @@ def my_bookings_view(request):
     today = timezone.now().date()
     bookings = Booking.objects.filter(user=request.user).order_by('-check_in')
     return render(request, 'booking/my_bookings.html', {'bookings': bookings, 'today': today})
+
+
+# --- DRF API ViewSets ---
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+
+class RoomViewSet(viewsets.ModelViewSet):
+    queryset = Room.objects.all()
+    serializer_class = RoomSerializer
+
+
+class BookingViewSet(viewsets.ModelViewSet):
+    queryset = Booking.objects.all()
+    serializer_class = BookingSerializer
+
+
+class EquipmentViewSet(viewsets.ModelViewSet):
+    queryset = Equipment.objects.all()
+    serializer_class = EquipmentSerializer
