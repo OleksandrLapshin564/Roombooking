@@ -64,10 +64,24 @@ RoomBooking is a Django-based web application that allows users to browse and bo
 - ✅ Checked Docker containers, navigation, authentication, and booking functionality  
 - ✅ Ensured `Booking` model and `BookingForm` correctly handle overlapping dates and prevent `None` values in queries  
 - ✅ Confirmed all pages load without errors and flash messages display correctly  
-- ✅ Updated README.md and PROJECT_HISTORY.md to document the final stable version
+- ✅ Updated README.md and PROJECT_HISTORY.md to document the final stable version  
 
 🔗 **GitHub Branch:**  
 [Final Stable Version - bootstrap-enhancement](https://github.com/OleksandrLapshin564/Roombooking/tree/bootstrap-enhancement)
+
+---
+
+## 🚀 Updates — Stage 6: API Testing & Automation (August 15, 2025)
+
+- ✅ Added REST API endpoints for Bookings (`GET`, `POST`, `PUT`, `DELETE`)  
+- ✅ Implemented token-based authentication for API access  
+- ✅ Created `serializers.py` and `api_views.py` to handle API data serialization and views  
+- ✅ Added PowerShell script `test_api.ps1` for automated API testing  
+- ✅ Verified all CRUD operations for bookings via API in Docker environment  
+- ✅ Updated README and PROJECT_HISTORY with API testing documentation  
+
+🔗 **GitHub Branch:**  
+[API & Testing Scripts](https://github.com/OleksandrLapshin564/Roombooking/tree/bootstrap-enhancement)
 
 ---
 
@@ -81,29 +95,26 @@ RoomBooking is a Django-based web application that allows users to browse and bo
 git clone https://github.com/OleksandrLapshin564/Roombooking.git
 cd Roombooking
 
-Build and start containers:
+2. Build and start containers:
 docker-compose up -d --build
- 
-Run migrations:
+
+3. Run migrations:
 docker-compose exec web python manage.py migrate
 
-Create a superuser for admin access:
+4. Create a superuser for admin access:
 docker-compose exec web python manage.py createsuperuser
 
-Open in your browser:
-
+5. Open in your browser:
 Homepage: http://localhost:8000/
 
 Admin panel: http://localhost:8000/admin/
 
-To stop containers:
+6. To stop containers:
 docker-compose down
 
 How to Check Media (Room Photos) Display
 
-To ensure that uploaded room images are displayed correctly:
-
-Verify images are present in the media/room_photos/ directory inside your project.
+Verify images are present in media/room_photos/ directory inside your project.
 
 Check Django settings for media:
 MEDIA_ROOT = BASE_DIR / 'media'
@@ -132,13 +143,15 @@ booking/                  ← Main Django app
 ├── views.py              ← View logic
 ├── admin.py              ← Admin configurations
 ├── forms.py              ← Forms definitions
+├── serializers.py        ← API serializers
+├── api_views.py          ← API views for bookings
 media/                    ← Uploaded room images (mounted in Docker)
 Dockerfile                ← Django + Pillow image setup
 docker-compose.yml        ← Docker configuration for web server and PostgreSQL
 manage.py                 ← Django management script
+test_api.ps1              ← PowerShell script to test API CRUD operations
 
 🛠 Technologies Used
-
 Python 3.x, Django 4.x
 PostgreSQL (via Docker)
 Docker & Docker Compose
@@ -162,4 +175,4 @@ Document project history and changes (PROJECT_HISTORY.md)
 Author: Oleksandr Lapshin
 Email: lapshin.oleksa@gmail.com
 
-📅 Last Updated: August 14, 2025
+📅 Last Updated: August 15, 2025
