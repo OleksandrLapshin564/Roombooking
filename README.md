@@ -1,49 +1,77 @@
-# RoomBooking
+# RoomBooking REST API
 
-RoomBooking is a Django-based web application that allows users to view and book available rooms.
+RoomBooking is a **Django-based REST API project** for managing room bookings.  
+Originally started as a Django + Bootstrap web application, the project has been **fully migrated to a REST API backend** (as of 19.08.2025).  
+This design enables integration with external frontend frameworks (React, Vue, Angular) or mobile clients.
 
-## 🛠 Project Features
+---
 
-- Responsive room list and detail pages
-- Django templating with Bootstrap 5
-- Static image placeholders for room previews
-- Dockerized for local development
+## 🛠 Features
 
-## 🚀 What's New (Bootstrap Enhancement)
+- 🔑 User authentication & authorization (Django REST Framework ready)
+- 🏢 Room management (list rooms, view details, capacity, descriptions)
+- 📅 Booking management (create, view, and manage reservations)
+- 🌐 RESTful endpoints with JSON responses
+- 🐳 Fully Dockerized for development and testing
 
-This pull request includes:
+---
 
-- Modernized layout with Bootstrap 5 (cards, containers, responsive grid)
-- Placeholder images added for room listings
-- Improved accessibility and layout consistency
-- Prepared room listing page for real image integration
-- Updated `base.html`, `room_list.html`, and static files
-- Docker adjustments to simplify frontend testing
+## 📡 REST API Endpoints
 
-🔗 **Pull Request with UI Enhancements:**  
-👉 [https://github.com/OleksandrLapshin564/Roombooking/pull/1](https://github.com/OleksandrLapshin564/Roombooking/pull/1)
+Example endpoints (prefix: `/api/`):
+
+- `GET /api/rooms/` → List all rooms  
+- `GET /api/rooms/{id}/` → Get room details  
+- `POST /api/bookings/` → Create a booking  
+- `GET /api/bookings/` → List all bookings  
+
+---
 
 ## 🐳 Local Development (via Docker)
 
 ```bash
-docker-compose up --build
-Visit the site at http://localhost:8000
+# Build and start containers
+docker compose up --build
+
+# Stop containers
+docker compose down
+
+Web API will be available at: http://localhost:8001/api/
+
+PostgreSQL DB exposed at: localhost:5432
 
 📁 Project Structure
-booking/ — Django app
 
-templates/booking/ — HTML templates
+Roombooking/
+├── booking/               # Core Django app
+│   ├── api/               # REST API (serializers, views, urls)
+│   ├── migrations/        # DB migrations
+│   └── models.py          # Database models
+├── Roombooking/           # Django project settings
+├── Dockerfile             # API container definition
+├── docker-compose.yml     # Services (web, db)
+├── requirements.txt       # Python dependencies
+└── README.md              # Project documentation
+📜 Project Evolution
 
-static/booking/ — Static files (CSS, images)
+Initial phase → Django + Bootstrap frontend with templates
 
-Dockerfile, docker-compose.yml — Dev environment
+Intermediate → UI enhancements (Bootstrap 5, responsive layout)
 
-📅 Assignment Info
-✅ Bootstrap-enhanced templates for room_list.html
+Final phase (19.08.2025) → Full migration to REST API backend
 
-📤 Submitted via GitHub Pull Request
+Templates removed from main workflow
 
-👨‍🏫 For instructor review
+API-first architecture introduced
 
-yaml
+Ready for frontend/mobile integration
 
+🧑‍🏫 Assignment Info
+
+✅ Task: Convert RoomBooking project into a full REST API
+
+📅 Completed: 19.08.2025
+
+🔗 GitHub Repository: RoomBooking on GitHub
+
+👨‍🏫 For instructor review: Denis Hennadiyovych
