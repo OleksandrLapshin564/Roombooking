@@ -13,3 +13,13 @@ db.sqlite3
 
 # VSCode
 .vscode/
+
+# Docker
+docker/
+docker-compose.override.yml
+
+# macOS
+.DS_Store
+
+# Logs
+*.log

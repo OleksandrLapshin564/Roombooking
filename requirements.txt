@@ -5,6 +5,10 @@ tzdata
 typing_extensions>=4
 psycopg2-binary
 djangorestframework
+celery>=5.3
+redis>=5.0
+django-cors-headers
+drf-yasg
 
 
 
