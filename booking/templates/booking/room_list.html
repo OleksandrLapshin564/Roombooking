@@ -1,25 +1,36 @@
 {% extends 'booking/base.html' %}
-{% load static %}
-{% block title %}Available Rooms{% endblock %}
+
+{% block title %}Rooms{% endblock %}
 
 {% block content %}
-<h1 class="mb-4 text-center">Available Rooms</h1>
+<div class="container py-5">
+    <h1 class="text-center mb-5">Available Rooms</h1>
 
-<div class="row row-cols-1 row-cols-md-3 g-4">
-  {% for room in rooms %}
-  <div class="col">
-    <div class="card h-100 shadow-sm border-0">
-      <!-- Room Image -->
-      <img src="{% static 'booking/images/room-placeholder.jpg' %}" class="card-img-top" alt="Room Image" style="height: 200px; object-fit: cover;">
+    <div class="row g-4">
+        {% for room in rooms %}
+        <div class="col-sm-6 col-lg-4">
+            <div class="card h-100 shadow rounded-3 border-0">
+                {% if room.image %}
+                    <img src="{{ room.image.url }}" class="card-img-top rounded-top" alt="{{ room.name }}">
+                {% else %}
+                    <img src="{% static 'images/default.jpg' %}" class="card-img-top rounded-top" alt="{{ room.name }}">
+                {% endif %}
 
-      <div class="card-body d-flex flex-column">
-        <h5 class="card-title">{{ room.name }}</h5>
-        <p class="card-text mb-1"><strong>Capacity:</strong> {{ room.capacity }} persons</p>
-        <p class="card-text">{{ room.description }}</p>
-        <a href="{% url 'room_detail' room.id %}" class="btn btn-outline-primary mt-auto align-self-start">View Details</a>
-      </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title fw-bold">{{ room.name }}</h5>
+                    <p class="card-text text-muted small">{{ room.description|truncatewords:20 }}</p>
+                    <p class="fw-semibold mb-3"><i class="bi bi-currency-dollar"></i> {{ room.price }} USD</p>
+                    <a href="{% url 'room_detail' room.id %}" class="btn btn-outline-primary mt-auto">View Details</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center">
+            <div class="alert alert-info shadow-sm rounded">
+                No rooms available at the moment.
+            </div>
+        </div>
+        {% endfor %}
     </div>
-  </div>
-  {% endfor %}
 </div>
 {% endblock %}

@@ -1,15 +1,39 @@
+# Django framework
 Django>=4.2,<5.0
+
+# ASGI support
 asgiref<4,>=3.6.0
+
+# SQL utilities
 sqlparse>=0.3.1
+
+# Time zone data
 tzdata
+
+# Typing support
 typing_extensions>=4
+
+# PostgreSQL adapter
 psycopg2-binary
+
+# REST framework
 djangorestframework
+
+# Celery and Redis for async tasks
 celery>=5.3
 redis>=5.0
+
+# CORS headers support
 django-cors-headers
+
+# API documentation
 drf-yasg
 
+# Image handling
+Pillow
 
+# Environment variables support
+django-environ
 
-
+# Form rendering tweaks
+django-widget-tweaks>=1.5
