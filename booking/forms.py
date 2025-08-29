@@ -18,16 +18,18 @@ class RatingForm(forms.ModelForm):
         model = Rating
         fields = ['score', 'comment']
         widgets = {
-            'score': forms.Select(
-                choices=[(i, str(i)) for i in range(1, 6)],
-                attrs={'class': 'form-select'}
-            ),
+            'score': forms.Select(choices=[(i, str(i)) for i in range(1, 6)], attrs={'class': 'form-select'}),
             'comment': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
         }
 
-class UserRegisterForm(UserCreationForm):
+class UserRegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    password1 = forms.CharField(label="Password", widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    password2 = forms.CharField(label="Confirm Password", widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'form-control'}),
+        }
