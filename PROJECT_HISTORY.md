@@ -1,96 +1,63 @@
-# 📘 Project History and Progress Log
+# Project History: Roombooking
 
-This file helps to track what has been done and what is planned.
-
----
-
-## 📁 Project Name
-**RoomBooking**
+## Overview
+This document summarizes the development history, milestones, and progress of the Roombooking project. It tracks key stages, from project setup to feature implementation, testing, and deployment preparation.
 
 ---
 
-## ✅ Completed Tasks
+## Project Timeline
 
-- ✅ Initialized Django project `Roombooking`.
-- ✅ Created Docker configuration:
-  - `Dockerfile`
-  - `docker-compose.yml`
-- ✅ Configured PostgreSQL database in Docker.
-- ✅ Applied initial Django migrations.
-- ✅ Created superuser:
-  - **Username:** Oleksa
-- ✅ Tested the Django admin panel successfully.
-- ✅ Created the `/about/` route with a simple HTML response.
-- ✅ Verified routes work correctly (`/admin/`, `/`, and `/about/`).
-- ✅ Prepared detailed `README.md` explaining:
-  - How to build and run the project.
-  - How to create migrations and a superuser.
-  - How to stop containers.
-  - Example `docker-compose.yml`.
-- ✅ Deleted `__pycache__` directories before archiving.
-- ✅ Excluded `.venv` and `.idea` folders from the archive to keep size <25MB.
-- ✅ Created and submitted archive `roombooking_project_Oleksa.rar` for instructor review.
-- ✅ Created Django app `booking` and added it to `INSTALLED_APPS`.
-- ✅ Created templates: `base.html`, `room_list.html`, `room_detail.html`, and `about.html`.
-- ✅ Added static directory and integrated `favicon.ico` and custom `styles.css`.
-- ✅ Successfully styled pages using Bootstrap 5 and custom CSS.
-- ✅ Fully implemented and tested routes:
-  - Home (`/`): Room list
-  - Room detail (`/rooms/<id>/`)
-  - About (`/about/`)
-- ✅ Performed final visual testing in various screen sizes.
-- ✅ Final results reviewed and confirmed to meet all Stage 2 homework requirements.
+### 2025-07-05
+- Created Django project `Roombooking`.
+- Added `booking` app for room management.
+- Configured project structure and initial routing.
 
----
+### 2025-07-07
+- Implemented basic templates: `base.html`, `room_list.html`, `room_detail.html`.
+- Integrated Bootstrap 5 for frontend styling.
+- Added static room list (no database yet).
+- Verified template rendering and navigation.
 
-## 🔄 Major Update — REST API Conversion (19.08.2025)
+### 2025-07-29
+- Uploaded project to GitHub repository: [https://github.com/OleksandrLapshin564/Roombooking](https://github.com/OleksandrLapshin564/Roombooking)
+- Created Git branch strategy for UI/UX improvements.
 
-- ✅ Project fully migrated to **pure REST API architecture**.
-- ✅ All existing Django templates and frontend logic removed.
-- ✅ Added:
-  - `booking/api/serializers.py`
-  - `booking/api/views.py`
-  - `booking/api/urls.py`
-- ✅ Implemented API endpoints for:
-  - Rooms listing (`/api/rooms/`)
-  - Room details (`/api/rooms/<id>/`)
-  - Bookings (`/api/bookings/`)
-- ✅ Updated `docker-compose.yml` with consistent port mapping.
-- ✅ Added `.gitignore` to project root.
-- ✅ Committed and pushed full project history to GitHub (`rest-api` branch).
+### 2025-08-03
+- Implemented room creation in Django admin.
+- Configured models for Room, Booking, Rating.
+- Added `Pillow` support and `MEDIA_URL` for image uploads.
+
+### 2025-08-05
+- Introduced room categories: Single, Double, Suite.
+- Updated views and templates for category listing.
+- Added `rooms_by_category` page and related routing.
+
+### 2025-08-29
+- Resolved Docker and media serving issues.
+- Verified that uploaded images display correctly for all rooms.
+- Configured static files and templates to work in Docker environment.
+
+### 2025-09-04
+- Successfully created superuser `Lam` for Django admin access.
+- Completed manual equipment assignment for all 15 rooms:
+  - Single Rooms: 5 rooms with equipment
+  - Double Rooms: 5 rooms with equipment
+  - Suite Rooms: 5 rooms with equipment
+- Verified full functionality: viewing rooms, booking, ratings, login/register, and admin panel.
+- Project ready for submission and next stage (REST API implementation).
 
 ---
 
-## 🗂 Architecture Overview after REST API Migration
+## Notes
+- All templates and static files are fully integrated with Bootstrap.
+- Equipment uses Many-to-Many relationship with rooms.
+- All migrations applied and verified in Docker environment.
+- Project structure and functionality tested and confirmed stable.
 
-```mermaid
-flowchart TD
-    subgraph Client ["Client Side (Frontend)"]
-        A[Browser / React / Postman] -->|HTTP Requests| B
-    end
+---
 
-    subgraph Backend ["Django REST API Backend"]
-        B[API Endpoints /api/...]
-        C[Views & Serializers]
-        D[(PostgreSQL Database)]
-        B --> C --> D
-    end
-
-Key difference:
-The earlier HTML-based frontend (templates/, Bootstrap, static pages) is now removed.
-Only REST API endpoints remain, designed for external clients (e.g., React frontend, Postman testing, mobile apps).
-Next Steps (Future Work)
-
-🚀 Build a React frontend (or another JS framework) to consume the REST API.
-
-🚀 Add authentication (JWT or DRF TokenAuth).
-
-🚀 Implement booking management via API (create/update/delete bookings).
-
-🚀 Deploy project to cloud hosting (Heroku / Render / Railway).
-
-🚀 Add automated testing for API endpoints.
-
-🗕️ Last Updated
-
-19 August 2025
+## Next Steps
+- Implement full REST API for rooms, bookings, and ratings.
+- Add automated testing for models, views, and forms.
+- Enhance user interface with additional interactive elements.
+- Prepare final deployment instructions and documentation.

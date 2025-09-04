@@ -7,53 +7,27 @@
     <h2 class="text-center mb-4">Room Categories</h2>
 
     <div class="row g-4">
-        <!-- Single rooms -->
+        {% for category in categories %}
         <div class="col-md-4">
             <div class="card shadow-sm rounded-3 h-100">
                 <div class="card-body text-center d-flex flex-column justify-content-between">
                     <div>
-                        <h4 class="card-title">Single Rooms</h4>
+                        <h4 class="card-title">{{ category.name }} Rooms</h4>
                         <p class="card-text">
-                            Cozy and affordable rooms for one guest. <br>
-                            <strong>{{ categories.Single|length }}</strong> available.
+                            {% if category.slug == 'single' %}
+                                Cozy and affordable rooms for one guest.
+                            {% elif category.slug == 'double' %}
+                                Comfortable rooms for two guests.
+                            {% elif category.slug == 'suite' %}
+                                Premium luxury experience for multiple guests.
+                            {% endif %}
                         </p>
                     </div>
-                    <a href="{% url 'rooms_by_category' 'single' %}" class="btn btn-primary mt-3">View</a>
+                    <a href="{% url 'booking:rooms_by_category' category.slug %}" class="btn btn-primary mt-3">View</a>
                 </div>
             </div>
         </div>
-
-        <!-- Double rooms -->
-        <div class="col-md-4">
-            <div class="card shadow-sm rounded-3 h-100">
-                <div class="card-body text-center d-flex flex-column justify-content-between">
-                    <div>
-                        <h4 class="card-title">Double Rooms</h4>
-                        <p class="card-text">
-                            Comfortable rooms for two guests. <br>
-                            <strong>{{ categories.Double|length }}</strong> available.
-                        </p>
-                    </div>
-                    <a href="{% url 'rooms_by_category' 'double' %}" class="btn btn-primary mt-3">View</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Luxury Suites -->
-        <div class="col-md-4">
-            <div class="card shadow-sm rounded-3 h-100">
-                <div class="card-body text-center d-flex flex-column justify-content-between">
-                    <div>
-                        <h4 class="card-title">Luxury Suites</h4>
-                        <p class="card-text">
-                            Premium luxury experience. <br>
-                            <strong>{{ categories.Luxury Suite|length }}</strong> available.
-                        </p>
-                    </div>
-                    <a href="{% url 'rooms_by_category' 'suite' %}" class="btn btn-primary mt-3">View</a>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

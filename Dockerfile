@@ -1,22 +1,43 @@
-# Using the base Python image
+# -----------------------------
+# Base Python image
+# -----------------------------
 FROM python:3.9-slim
 
-# Installing the necessary libraries for psycopg2
+# -----------------------------
+# Install necessary system libraries for psycopg2 and netcat
+# -----------------------------
 RUN apt-get update \
-    && apt-get install -y libpq-dev gcc netcat-openbsd
+    && apt-get install -y libpq-dev gcc netcat-openbsd \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-# Creating a working directory
+# -----------------------------
+# Set working directory
+# -----------------------------
 WORKDIR /app
 
-# Copy the requirements.txt file and install the dependencies
+# -----------------------------
+# Copy and install Python dependencies
+# -----------------------------
 COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application code
+# -----------------------------
+# Copy project files
+# -----------------------------
 COPY . /app/
 
-# Expose port 8000
-EXPOSE 8000
+# -----------------------------
+# Ensure wait-for-it.sh is executable
+# -----------------------------
+RUN chmod +x /app/wait-for-it.sh
 
-# Project launch command
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# -----------------------------
+# Expose port to match docker-compose
+# -----------------------------
+EXPOSE 8001
+
+# -----------------------------
+# Default command to launch the project
+# -----------------------------
+CMD ["sh", "-c", "./wait-for-it.sh db:5432 -- python manage.py runserver 0.0.0.0:8001"]

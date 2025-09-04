@@ -17,10 +17,11 @@ env = environ.Env(
 environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
 # -----------------------------
-# Debug and hosts
+# Security and debug
 # -----------------------------
-DEBUG = env("DEBUG", default=True)
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "0.0.0.0"]
+SECRET_KEY = env("SECRET_KEY")
+DEBUG = env.bool("DEBUG", default=True)
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["127.0.0.1", "localhost"])
 
 # -----------------------------
 # Root URL configuration
@@ -31,7 +32,6 @@ ROOT_URLCONF = "Roombooking.urls"
 # Installed apps
 # -----------------------------
 INSTALLED_APPS = [
-    # Django apps
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -39,8 +39,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "widget_tweaks",
-
-    # Our app
     "booking",
 ]
 
@@ -63,7 +61,7 @@ MIDDLEWARE = [
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, "booking/templates")],
+        "DIRS": [BASE_DIR / "booking" / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -85,7 +83,7 @@ WSGI_APPLICATION = "Roombooking.wsgi.application"
 # Database
 # -----------------------------
 DATABASES = {
-    "default": env.db(
+    'default': env.db(
         "DATABASE_URL",
         default="postgres://postgres:Postgres123!@db:5432/roombooking_db"
     )
@@ -95,18 +93,10 @@ DATABASES = {
 # Password validation
 # -----------------------------
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
-    },
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
 # -----------------------------
@@ -122,13 +112,13 @@ USE_TZ = True
 # Static files
 # -----------------------------
 STATIC_URL = "/static/"
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
 # -----------------------------
 # Media files
 # -----------------------------
 MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_ROOT = BASE_DIR / "media"
 
 # -----------------------------
 # Authentication redirects
