@@ -2,11 +2,10 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import RoomViewSet, BookingViewSet
 
-# Creating a DRF router
 router = DefaultRouter()
-router.register(r'rooms', RoomViewSet, basename='room')
-router.register(r'bookings', BookingViewSet, basename='booking')
+router.register(r'rooms', RoomViewSet)
+router.register(r'bookings', BookingViewSet)
 
 urlpatterns = [
-    path('', include(router.urls)),  # Automatically adds all CRUD routes
+    path('', include(router.urls)),
 ]

@@ -7,9 +7,11 @@ FROM python:3.9-slim
 # Install necessary system libraries for psycopg2 and netcat
 # -----------------------------
 RUN apt-get update \
-    && apt-get install -y libpq-dev gcc netcat-openbsd \
+    && apt-get install -y libpq-dev gcc netcat-traditional \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+
 
 # -----------------------------
 # Set working directory

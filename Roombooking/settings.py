@@ -32,13 +32,21 @@ ROOT_URLCONF = "Roombooking.urls"
 # Installed apps
 # -----------------------------
 INSTALLED_APPS = [
+    # Django core
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
+    # Third-party
+    "rest_framework",
+    "corsheaders",
+    "drf_yasg",
     "widget_tweaks",
+
+    # Local apps
     "booking",
 ]
 
@@ -46,6 +54,7 @@ INSTALLED_APPS = [
 # Middleware
 # -----------------------------
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",  # must be at the top
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -83,7 +92,7 @@ WSGI_APPLICATION = "Roombooking.wsgi.application"
 # Database
 # -----------------------------
 DATABASES = {
-    'default': env.db(
+    "default": env.db(
         "DATABASE_URL",
         default="postgres://postgres:Postgres123!@db:5432/roombooking_db"
     )
@@ -137,3 +146,21 @@ DEFAULT_FROM_EMAIL = "noreply@roombooking.com"
 # Default primary key field type
 # -----------------------------
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# -----------------------------
+# Django REST Framework settings
+# -----------------------------
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny",
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.BasicAuthentication",
+    ],
+}
+
+# -----------------------------
+# CORS settings
+# -----------------------------
+CORS_ALLOW_ALL_ORIGINS = True
