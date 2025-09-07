@@ -1,0 +1,24 @@
+{% extends "booking/base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>OpenAI API Test</h2>
+
+    <form method="post" class="mb-3">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="prompt" class="form-label">Enter your prompt:</label>
+            <textarea id="prompt" name="prompt" class="form-control" rows="4" required>{{ prompt }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send to OpenAI</button>
+    </form>
+
+    {% if response_text %}
+    <hr>
+    <h3>Response:</h3>
+    <div class="alert alert-secondary" role="alert">
+        {{ response_text }}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

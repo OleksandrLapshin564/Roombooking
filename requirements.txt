@@ -37,3 +37,11 @@ django-environ
 
 # Form rendering tweaks
 django-widget-tweaks>=1.5
+
+# -------------------------
+# AI / LangChain integration
+# -------------------------
+openai
+langchain
+tiktoken
+python-dotenv

@@ -1,0 +1,13 @@
+# -------------------------
+# AI / LangChain integration
+# -------------------------
+openai>=1.12.0
+langchain>=0.2.0
+tiktoken
+python-dotenv
+
+# -------------------------
+# Optional vector database (enable later if needed)
+# -------------------------
+# chromadb
+# faiss-cpu

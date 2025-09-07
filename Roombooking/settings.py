@@ -94,7 +94,7 @@ WSGI_APPLICATION = "Roombooking.wsgi.application"
 DATABASES = {
     "default": env.db(
         "DATABASE_URL",
-        default="postgres://postgres:Postgres123!@db:5432/roombooking_db"
+        default="postgres://postgres:Postgres123!@db:5432/roombooking_db"  # ✅ HOST=db
     )
 }
 
