@@ -1,74 +1,46 @@
-# 📄 Stage_3_PLAN.md — OpenAI + LangChain integration (Roombooking)
+# Stage 3 Plan: OpenAI Integration in Roombooking
 
-## 0️⃣ Вступ
-- Stage 3: інтеграція OpenAI + LangChain в Roombooking.
-- Мета: створити AI-помічника, який може відповідати на запитання про кімнати та бронювання.
-- Робимо все **обережно**, в окремій гілці (`feature/ai-integration`) і ізольованих файлах.
+## Objective
+Integrate OpenAI API (mock responses) into the Roombooking project to demonstrate AI-powered features without requiring a paid API key.
 
----
+## Tasks
 
-## 1️⃣ План інтеграції (стор. 1–3)
-1. **Підготовка середовища**
-   - Додати залежності у `requirements_rest.txt`:
-     - openai
-     - langchain
-     - (опційно) langchain-community, tiktoken
-   - Створити `.env` змінну `OPENAI_API_KEY`.
-2. **Архітектура**
-   - Новий Django app `chatbot`.
-   - API endpoint `/api/chatbot/`.
-3. **Базова функціональність**
-   - Прості питання → OpenAI GPT → JSON відповідь.
-4. **Інтеграція з даними проєкту**
-   - LangChain → DjangoORM / SQLDatabaseChain.
-5. **UI (Frontend)**
-   - Чат через Bootstrap або React.
-6. **Оптимізація та безпека**
-   - Обмеження (rate limit), логування запитів.
+1. **Update requirements**
+   - Add `openai` for API interaction.
+   - Add `python-dotenv` for environment variable management.
+   - Optional: `langchain`, `tiktoken` for potential advanced OpenAI integration.
+   
+2. **Environment Setup**
+   - Create `.env` file with the `OPENAI_API_KEY` variable.
+   - Ensure Docker setup passes the `.env` variables into the `web` container.
 
----
+3. **Views Update**
+   - Add a new `openai_test` view in `views.py`.
+   - Implement `get_openai_response` function with mock responses for safe testing.
+   - Update imports and handle potential API exceptions gracefully.
 
-## 2️⃣ Детальний чек-лист Stage 3 (стор. 1–6)
-- Dependencies: `openai`, `langchain`, `tiktoken`, `python-dotenv`.
-- Створити `.env` з `OPENAI_API_KEY`.
-- Новий app `chatbot`.
-- API endpoint `ask_ai`.
-- LangChain chain: `ConversationChain`.
-- Frontend: кнопка, форма, fetch/axios.
-- Docs & History: оновити `README.md` і `PROJECT_HISTORY.md`.
+4. **Templates**
+   - Create `openai_test.html` template.
+   - Add a form to submit a prompt to OpenAI.
+   - Display the response text below the form.
+   - Extend `base.html` to maintain consistent navigation.
 
----
+5. **Navigation**
+   - Add "OpenAI API Test" link to the main navigation bar in `base.html`.
 
-## 3️⃣ Database-aware AI (опційно, стор. 6)
-- Використати `langchain_community.utilities.SQLDatabase` для PostgreSQL.
-- Створити chain, який формує SQL-запити та відповідає з бази.
+6. **Testing**
+   - Run the project in Docker.
+   - Test the OpenAI form submission.
+   - Verify mock responses appear correctly.
+   - Ensure no errors are raised in the browser or server logs.
 
----
+7. **Documentation**
+   - Update `README.md` to include Stage 3 features and instructions.
+   - Update `PROJECT_HISTORY.md` with Stage 3 completion details.
+   - Add `STAGE_3_PLAN.md` for clarity and tracking.
 
-## 4️⃣ Frontend POC (стор. 6–7)
-- `base.html` → кнопка "AI Assistant".
-- `chat.html` → форма для введення запитання, блок для відповіді.
-- JS → fetch POST `/api/chatbot/ask/`, виводимо відповідь.
-
----
-
-## 5️⃣ Docker / ізольоване середовище (стор. 7–9)
-- `Dockerfile.rest.txt`, `docker-compose.rest.yml`.
-- `.env` з секретами (не комітити!).
-- Можливість локального тесту у virtualenv перед Docker.
-- Ризики: конфлікти версій, розмір образу, витрати на OpenAI, безпека ключів.
-
----
-
-## 6️⃣ Малий proof-of-concept (стор. 10–12)
-- Локальний venv: встановити deps, перевірити імпорти.
-- Docker test ізольовано: `docker-compose -f docker-compose.rest.yml up --build`.
-- Після успішного тесту — зафіксувати версії: `pip freeze > requirements_rest.txt`.
-
----
-
-## 7️⃣ POC API endpoint + Frontend
-
-### 7.1 Django app
-```bash
-python manage.py startapp chatbot
+## Outcome
+- OpenAI test functionality fully integrated with mock responses.
+- Dockerized environment correctly passes `.env` variables.
+- Stage 3 completed without using the paid OpenAI API.
+- Project ready for submission to the instructor.
